@@ -6,24 +6,48 @@
 function showCards(data) {
   const cardHTML = data
     .map(
-       /*html*/ 
-      (restaurant) => `
+        (restaurant) => 
+    
+  {let Cards_initial_Results = restaurant.inspection_results;
+    let Cards_Final_Results = "";
+    if(Cards_initial_Results.includes("Violations")||Cards_initial_Results.includes("violations"))
+    
+    {Cards_Final_Results = "NOT Safe";}
+else 
+    {Cards_Final_Results = "Safe";}
+      return `
                 <div class="restaurant-card">
                     <h3>${restaurant.name}</h3>
-                    <p><strong>Category:</strong> ${restaurant.category}</p>
-                    <p><strong>proper_sewage_disposal:</strong> ${restaurant.proper_sewage_disposal}</p> 
-                     <strong>inspection_type:</strong> ${restaurant.inspection_type}</p>
+                    <p><strong>Restaurant Status: </strong>${Cards_Final_Results}</p>
+                   <p><strong>Establishment Type:</strong> ${restaurant.category}</p>
                     <p><strong>City:</strong> ${restaurant.city}</p>
                     <p><strong>Owner:</strong> ${restaurant.owner}</p>
-                    <p><strong>food_protected_from:</strong> ${restaurant.food_protected_from}</p>
-                </div>
-            `
-    )
+                    <strong>Inspection type:</strong> ${restaurant.inspection_type}</p>
+
+
+                    </div>
+                    `;
+
+})
     .join("");
-     /*html*/ 
+     /*html
+     <p><strong>proper sewage disposal:</strong> ${restaurant.proper_sewage_disposal}</p> 
+                     
+                    
+                    
+             <p><strong>food contaminant safe:</strong> ${restaurant.food_protected_from}</p> 
+                
+     
+     */
+
+
+
+
+
+
   return `
-                <h2 class="view-title">🃏 Card View</h2>
-                <p class="view-description">Browse restaurants as individual cards - perfect for comparing options</p>
+                
+                <p class="view-description">Browse restaurants to see their inspection status</p>
                 <div class="card-grid">
                     ${cardHTML}
                 </div>

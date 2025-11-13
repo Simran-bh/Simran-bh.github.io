@@ -32,7 +32,7 @@ function showTable(data) {
     </tr> `).join('');
     
   return `
-        <h2 class="view-title">📊 Table View</h2> 
+        <h2 class="view-title"> Inspection Details</h2> 
         <table class = "Data_Table">
                 <thead>
                     <tr>

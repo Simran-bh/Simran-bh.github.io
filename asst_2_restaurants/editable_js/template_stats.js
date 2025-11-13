@@ -91,7 +91,7 @@ const CityBiggestFail = Object.entries(Count_by_City).sort(function (a, b)
   const CityBiggestFail_Count = CityBiggestFail[1];
 
 return `
-    <h2 class="view-title">📈 Statistics View</h2>
+    <h2 class="view-title"> Inspection Statistics</h2>
     <div class="stats-grid">
       <section class="stats-card">
         <h3>Total Inspections</h3>

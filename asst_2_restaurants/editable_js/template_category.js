@@ -25,24 +25,31 @@ data.forEach(r=>
 
 
     {const Listed_names = [...new Set(Restaurant_list.map((r) =>  `<li>${r.name}</li>`))]
-      .join('');
+      .join("");
 
 
-      return `<section class = "category-section">
-        <h3>${city_name}</h3>
-        <ul class = "category-list">${Listed_names}</ul>
-      </section>
-    `;
-})
-
-
-  .join('');
   return `
-   ' <h2 class="view-title">📂 Category View</h2>
-  <div class = "category-grid">
+    <section class = "Category_Card">
+      <div class = "category_card_title">
+      <h3>${city_name}</h3>
+      <span class = "count_for_category">${Restaurant_list.length} locations </span>
+   </div>
+
+   <ul class = "category-card-list">
+   ${Listed_names}
+   </ul>
+   </section>
+   `
+   ;
+   
+})
+.join("");
+  return  `
+ <h2 class="view-title"> Restaurants by City</h2>
+ <div class = "category-grid">
   ${Category_Section}
 </div>
-`;}
+`;} 
 
 
 // Can try with reduce too if time
