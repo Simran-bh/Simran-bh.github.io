@@ -1,0 +1,35 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "name": "RIQ Assignment",
+      "due": "2025-12-25",
+      "estimatedTime": "6h",
+      "notes": "Finish methods\nAdd diagrams\nDraft discussion\n\nCheck rubric again.",
+      "progress": 50,
+      "completed": false
+    },
+    {
+      "id": 2,
+      "name": "SVS Analysis",
+      "due": "2025-12-22",
+      "estimatedTime": "4h",
+      "notes": "Run ANOVA\nClean figures\nExport to slides.",
+      "progress": 20,
+      "completed": false
+    }
+  ],
+  "blocks": [
+    {
+      "id": 1,
+      "name": "Morning Routine",
+      "startIndex": 3,
+      "endIndex": 5,
+      "taskIds": [],
+      "startTimeRaw": "08:00",
+      "endTimeRaw": "10:00",
+      "notes": "Shower, breakfast, light emails.",
+      "completed": false
+    }
+  ]
+}

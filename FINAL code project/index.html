@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Daily Planner</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+ <!-- Start off with Top 2 panels - one for tasks and one for the neocities side
+  aWill try to add other links/ cute elemets into the neocities side later, just needs to be a panel for nwo -> Task panel
+   will need each task to be its own box, with ways to show deadline, progress, and time it will take. Some way to show 
+   add tasks too. -->
+
+ <!-- class is for repeated elements you want to style the same way, id is
+  for individual elements you don't -->
+ <!-- use charts.js not gsap-->
+
+ <!-- going back and adding placeholder stuff everywgere-->
+
+<body>
+  <div class="page">
+    <header>
+      <h1>Daily Planner</h1>
+      <p>Designing Simran's today </p>
+    </header>
+
+    <section class="top-row">
+
+      <!-- task panel -->
+      <section class="task-panel">
+
+        <div class="task-panel-header">
+
+          <h2>Task Pool</h2>
+
+          <div class="task-panel-actions">
+            <!-- adding an add task button here now - and 
+             expand too -->
+
+            <button id="open-task-modal">+ Task</button>
+            <button id="open-task-big">Expand</button>
+
+          </div>
+        </div>
+
+        <div class="task-list" id="task-list"></div>
+      </section>
+
+      <!-- Neocities style panel -->
+         <!-- dont have time/ space to make this area cute/ personal this can have other
+          features instead like instead of having weekly planner be its own page
+          ill have it here -> dont want to make any new pages, so will still have evrything open in modals  -->
+
+      <section class="side-panel">
+
+        <h2> Extras </h2>
+        <p>Weekly view, journal, and daily task statistics here.</p>
+       
+        <button id = "Weekly Planner (future)"> Weekly Planner (future)</button>
+
+        <button id="open-journal-modal">Journal</button>
+        <button id="open-stats-modal">Stats / Charts</button>
+      
+    </section>
+    </section>
+
+
+    
+  <!--  text entry needs input id for css+jave to access later, and type-->
+
+    <!-- the popups are  modals, 
+
+    Need to have settings for darkening background + pop up when they 
+    click the button. ->  ->  -->
+
+
+<!-- taks modals -->
+  <div class="modal" id="task-modal">
+    <div class="modal-content">
+      <h2 id="task-modal-title">Add Task</h2>
+
+      <div class="modal-row">
+        <p class="field-title">Task name</p>
+        <input id="task-name-input" type="text" placeholder="RIQ assignment">
+        </div>
+
+      <div class="modal-row">
+        <p class="field-title">Due date</p>
+        <input id="task-due-input" type="date"> 
+      </div>
+
+      <div class="modal-row">
+        <p class="field-title">Estimated time</p>
+<input id="task-estimate-input" type="text" placeholder="e.g., 2h, 45 min">
+      </div>
+
+      <!--Using text area here since its only showingone line w input
+      placeholder keeps showing as text so just delete for now -> come back if time-->
+      
+      <div class="modal-row">
+        <p class="field-title">Task notes</p>
+        <textarea id="task-notes-input"></textarea>
+      </div>
+
+
+
+      <div class="modal-row">
+        <p class="field-title">Progress</p>
+        <div class="task-slider-row">
+          <input id="task-progress-input" type="range" min="0" max="100" value="0">
+          <span id="task-progress-display">0%</span>
+        </div>
+      </div>
+
+      <input type="hidden" id="task-edit-id">
+
+      <div class="modal-actions">
+        <button class="secondary-btn" id="cancel-task-btn" type="button">Cancel</button>
+        <button class="primary-btn" id="save-task-btn" type="button">Save</button>
+      </div>
+    </div>
+  </div>
+
+  
+
+    <!-- timeline -->
+    <section class="timeline-section">
+      <div class="timeline-header">
+        <h2>Daily Timeline</h2>
+        <button id="open-block-modal" type="button">+ Time Block</button>
+      </div>
+
+      <div class="timeline-container">
+        <div class="timeline-grid" id="timeline-grid">
+          <!-- JS fills in time labels and blocks -->
+        </div>
+      </div>
+    </section>
+
+
+         <!-- checkboxes filled from task list -->
+          <!--fixed /div here too, which fixed the notes not in modal isseue -> will delete otehr failed fixes now  --> 
+       
+
+
+  <!-- time block -->
+  <div class="modal" id="block-modal">
+    <div class="modal-content">
+      <h2 id="block-modal-title">Create Time Block</h2>
+
+      <div class="modal-row">
+        <p class="field-title">Block name</p>
+        <input id="block-name-input" type="text"
+ placeholder="Work block">
+      </div>
+
+      <div class="modal-row">
+        <p class="field-title">Start time</p>
+<input id="block-start-input" type="time">
+      </div>
+
+      <div class="modal-row">
+       <p class="field-title">End time</p>
+<input id="block-end-input" type="time">
+      </div>
+
+      <div class="modal-row">
+        <p>Tasks you would be okay working on in this block</p>
+        <div class="block-tasks-list" id="block-tasks-list"></div>
+        </div>
+
+
+      <div class="modal-row">
+        <p class="field-title">Block notes</p>
+        <textarea id="block-notes-input"></textarea>
+      </div>
+      
+
+      <input type="hidden" id="block-edit-id">
+
+      <div class="modal-actions">
+        <button class="danger-btn hidden" id="delete-block-btn" type="button">Delete block</button>
+        <button class="secondary-btn" id="cancel-block-btn" type="button">Cancel</button>
+        <button class="primary-btn" id="save-block-btn" type="button">Save block</button>
+      </div>
+    </div>
+  </div>
+  
+   <!--kind of hard to see a bunch of tasks, adding a big task veiw ehre -->
+  <!-- big taks veiw -->
+  <div class="modal" id="task-big-modal">
+    <div class="modal-content">
+      <h2>All Tasks</h2>
+      <div class="big-task-list" id="big-task-list"></div>
+      <div class="modal-actions">
+        <button class="secondary-btn" id="close-task-big-btn" type="button">Close</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- time block details -> expanded page,  -->
+  <div class="modal" id="block-details-modal">
+    <div class="modal-content">
+      <h2 id="block-details-title">Block Details</h2>
+
+      <div class="modal-row">
+        <label>Time</label>
+        <div id="block-details-time"></div>
+      </div>
+
+      <div class="modal-row">
+        <label>Tasks in this block</label>
+        <ul id="block-details-tasks" class="block-details-tasks"></ul>
+      </div>
+
+      <div class="modal-row">
+        <label>Notes</label>
+        <div id="block-details-notes" class="block-notes-body"></div>
+      </div>
+
+      <div class="modal-actions">
+        <button class="secondary-btn" id="close-block-details-btn" type="button">Close</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- choosung charts.js for the library,  -->
+  <div class="modal" id="stats-modal">
+    <div class="modal-content stats-modal-content">
+      <h2>Stats &amp; Charts</h2>
+      <p class="stats-intro">
+        Daily overveiw
+      </p>
+      <div class="stats-grid">
+        <div class="stats-card stats-card-wide">
+          <h3>Task Progress</h3>
+          <canvas id="task-progress-chart"></canvas>
+          <p class="stats-caption" id="task-progress-caption"></p>
+        </div>
+
+        <div class="stats-card">
+          <h3>Tasks You&#8217;ve Moved Forward </h3>
+          <canvas id="tasks-completed-chart"></canvas>
+          <p class="stats-caption" id="tasks-completed-caption"></p>
+        </div>
+
+        <div class="stats-card">
+          <h3>How You Used Your Time Today</h3>
+          <canvas id="blocks-completed-chart"></canvas>
+          <p class="stats-caption" id="blocks-completed-caption"></p>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="secondary-btn" id="close-stats-btn" type="button">Close</button>
+      </div>
+    </div>
+  </div>
+
+   <!-- JOURNAL MODAL -->
+  <div class="modal" id="journal-modal">
+    <div class="modal-content journal-modal-content">
+      <div class="journal-header">
+        <h2>Journal</h2>
+        <button class="secondary-btn" id="close-journal-btn" type="button">Close</button>
+      </div>
+      <p class="journal-intro">
+Start writing!      </p>
+      <div class="journal-layout">
+        <div class="journal-sidebar">
+          <div class="journal-list-header">
+            <h3>Your entries</h3>
+          </div>
+          <div class="journal-grid" id="journal-grid"></div>
+        </div>
+        <div class="journal-editor">
+          <div id="journal-editor-empty" class="journal-editor-empty">
+            Type a title and some thoughts, then save to create a new entry. You can always come back and edit it.
+          </div>
+          <div id="journal-editor-active" class="journal-editor-active hidden">
+            <div class="journal-title-row">
+              <label for="journal-editor-title-input">Entry title</label>
+              <input
+                id="journal-editor-title-input"
+                class="journal-title-input"
+                type="text"
+                placeholder="e.g., Evening reflection"
+              >
+            </div>
+            <textarea
+              id="journal-editor-text"
+              class="journal-editor-textarea"
+              placeholder="Write anything about your day here..."
+            ></textarea>
+            <div class="modal-actions journal-editor-actions">
+              <button class="secondary-btn" id="journal-new-btn" type="button">Create new entry</button>
+              <button class="primary-btn" id="journal-save-btn" type="button">Save entry</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Chart.js library -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Your app logic -->
+  <script src="script.js"></script>
+</body>
+</html>
