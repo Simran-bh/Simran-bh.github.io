@@ -1,0 +1,296 @@
+/* BASE STYLES - Students can modify and extend */
+:root {
+   --primary-color: #007cba;
+   /*--primary-color: #ffffff*/
+    --secondary-color: #28a745;
+    /*--background-color: #f8f9fa;*/
+    --background-color: #eef2f7;
+    --card-background: #ffffff;
+    --text-color: #333;
+    --border-color: #ddd;
+    --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: system-ui, sans-serif;
+    margin: 0;
+    padding: 1rem;
+    background: var(--background-color);
+    color: var(--text-color);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.view-selector {
+    display: flex;
+    gap: 1rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.view-button {
+    background: #ffffff;
+    /*color: white;*/
+    color: #374151;
+    border: 1px solid black;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s;
+}
+
+.view-button:hover {
+    background: #005a87;
+    color: white
+}
+
+.view-button.active {
+    background: #152f59;
+    color: white;
+    border-color: black;
+}
+
+.view-button.active.hover {
+    background: #152f59;
+    color: white;
+}
+
+
+.display-container {
+    background: var(--card-background);
+    border-radius: 8px;
+    padding: 2rem;
+    min-height: 400px;
+    box-shadow: var(--shadow);
+}
+
+.loading {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+    padding: 2rem;
+}
+
+.error {
+    background: #fee;
+    border: 1px solid #fcc;
+    color: #c00;
+    padding: 1.5rem;
+    border-radius: 4px;
+    text-align: center;
+}
+
+/* UTILITY CLASSES FOR STUDENTS */
+.view-title {
+    margin: 0 0 1rem 0;
+    color: var(--text-color);
+    border-bottom: 2px solid #eee;
+    padding-bottom: 0.5rem;
+}
+
+.view-description {
+    color: #666;
+    margin-bottom: 2rem;
+    font-style: italic;
+}
+
+/* CARD GRID LAYOUT */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.restaurant-card {
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    border-style: solid;
+    border-color: grey;
+    padding: 1.5rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    background-color: white
+}
+
+.restaurant-card h3 {
+    margin-top: 0rem;
+    margin-bottom: 1rem;
+    font-size: 1 rem;
+    color: black;
+    text-align: Center;
+    
+}
+
+
+.restaurant-card p{
+    margin: .1rem ;
+    font-size: .7 rem;
+    color: #374151;
+}
+.restaurant-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* TABLE LAYOUT */
+.Data_Table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    font-size: 1rem;
+    background: white;
+    border-radius: 10px;  /*need to figure out why this isn't rounding if time*/
+    border-spacing: 0;
+    font-size: 0.95rem;
+  
+
+}
+
+.Data_Table th {
+
+    background:#152f59;
+    color: white;
+    text-align: center;
+    padding: 8px;
+
+}
+
+
+.Data_Table td {
+    padding: 0.75rem;
+    text-align: center;
+    border: 1px solid var(--border-color);
+    padding: 8px;
+}
+
+
+
+.Data_Table tr:hover {
+    background:#f8f9fa 
+}
+
+
+
+
+/* CATEGORY GROUPS */
+
+.Category_Card {
+    
+    border: 1px solid #d3d9e0;
+    border-radius: 12px;
+    margin: 1.5rem;
+} 
+
+.category_card_title {
+background:#152f59 ;
+color: white;
+display: flex;
+align-items: center;
+border-radius: 12px 12px 0px 0px;
+padding: 0rem 1em 0rem 1rem;
+justify-content: space-between;
+
+}
+
+.category_card_title h3 {
+text-align: center;
+
+}
+
+/* STATS LAYOUT */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.stats-card {
+    text-align: center;
+    background: white;
+    border-radius: 12px;
+    background: white;
+    text-align: center;
+    border: 1px solid black;
+}
+
+.stats-card h3 {
+    background:#152f59;
+    color: white;
+    border-radius: 12px 12px 0px 0px;
+    padding: .5rem;
+    margin: 0;
+}
+
+.stats-card ul {
+    text-align: left;
+    margin: 1rem;
+    padding-left: 1rem;
+}
+
+.todo-implementation {
+    background: #fff3cd;
+    border: 2px dashed #ffc107;
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    color: #856404;
+}
+
+.asst-box {
+    margin-top: 2rem;
+    padding: 1rem;
+    background: white;
+    border-radius: 8px;
+}
+
+
+.all-charts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.donut-pass-fail,
+.city-bar,
+.chart-card-inspect-type
+ { background: white;
+border: 1px solid #d3d9e0;
+  border-radius: 12px;
+  padding: 12px;}
+
+
+.donut-pass-fail h3,
+.city-bar h3,
+.chart-card-inspect-type h3 
+{ margin: 0 0 10px 0;
+  font-size: 1.05rem;}
+
+
+
+.chart-wrap-city,
+.chart-wrap-inspect-type 
+
+{ width: 100%;
+  height: 320px;}
+
+
+.chart-wrap-donut
+ { width: 100%;
+    height: 260px;}
+
+
+.chart-wrap-city 
+{height: 420px;}
+
+.chart-wrap-donut canvas,
+.chart-wrap-city canvas,
+.chart-wrap-inspect-type canvas {
+  width: 100% ;
+  height: 100% ;
+  display: block;
+}
